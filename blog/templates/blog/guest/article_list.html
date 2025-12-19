@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <title>Blog - Articles</title>
+</head>
+<body>
+    <h1>
+        Articles
+    </h1>
+
+    {% if articles %}
+        {% for article in articles %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0">
+                <h2>
+                    <a href="{% url 'article-detail' slug=article.slug %}">
+                        {{ article.title }}
+                    </a>
+                </h2>
+
+                <p><small> By {{ article.author.username }} | {{ article.created_at|date:"M d, Y" }}</small></p>
+                <p>{{ article.content|truncatewords:30 }}</p>
+                <a href="{% url 'article-detail' slug=article.slug %}">
+                    Read more →
+                </a>
+            </div>
+        {% endfor %}
+
+        <!-- PAGINATION -->
+         {% if is_paginated %}
+            <div style="margin-top: 20px">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        ← Previous
+                    </a>
+                {% endif %}
+
+                <span style="margin: 0 10px;">
+                    Page {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number}}">
+                        Next →
+                    </a>
+
+                    <a href="?page={{ page_obj.paginator.num_pages }}">
+                        Last >>
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>No articles yet.</p>
+    {% endif %}
+</body>
+</html>
