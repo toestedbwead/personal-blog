@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">
+        ← Back to Articles
+    </a>
+
+    <h1>{{ article.title }}</h1>
+    <p><small>By {{ article.author.username }} | {{ article.created_at|date:"M d, Y" }}</small></p>
+    <p><small>Category: {{ article.category.name }}</small></p>
+
+    <hr>
+
+    <div>
+        {{ article.content }}
+    </div>
+    
+    <hr>
+    <a href="{% url 'home' %}">← Back to Articles</a>
+</body>
+</html>
