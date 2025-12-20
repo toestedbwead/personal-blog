@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+    </head>
+
+    <body>
+        <h1>My Dashboard</h1>
+
+        <div style="background: #f0f0f0; padding: 15px; margin: 15px 0">
+            <p><strong>
+                Total Articles:
+            </strong>
+            {{ total_articles }}
+            </p>
+            <p><strong>
+                Published:
+            </strong>{{ published_articles }}
+            </p>
+        </div>
+
+        <a href="{% url 'article-create' %}" style="background: green; color:white; padding:10px;">
+            Write New Article
+        </a>
+
+        <hr>
+
+        <h2>Your Articles</h2>
+        {% if articles %}
+            <table style="width: 100%; border-collapse:collapse;">
+                <tr style="background: #f0f0f0";>
+                    <th style="border:1px solid #ddd; padding: 10px;">
+                        Title
+                    </th>
+                    <th style="border:1px solid #ddd; padding: 10px;">
+                        Status
+                    </th>
+                    <th style="border:1px solid #ddd; padding: 10px;">
+                        Date
+                    </th>
+                    <th style="border:1px solid #ddd; padding: 10px;">
+                        Actions
+                    </th>
+                </tr>
+
+                {% for article in articles %}
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding:10px;">
+                            {{ article.title }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {% if article.is_published %}
+                                Published
+                            {% else %}
+                                Draft
+                            {% endif %}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">{{ article.created_at|date:"M d, Y" }}</td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            <a href="{% url 'article-edit' slug=article.slug %}">Edit</a> |
+                            <a href="{% url 'article-delete' slug=article.slug %}" style="color: red;">Delete</a>
+                        </td>    
+                    </tr>
+                {% endfor %}
+            </table>
+
+            {% if is_paginated %}
+                <div style="margin-top: 20px;">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">« First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">← Previous</a>
+                    {% endif %}
+                    
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Next →</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">Last »</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            <p>No articles yet. <a href="{% url 'article-create' %}">Write your first article!</a></p>
+        {% endif %}
+    </body>
+</html>

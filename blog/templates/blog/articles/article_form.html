@@ -7,7 +7,7 @@
     <h1>{%if form.instance.pk %}Edit Article{% else %}Write New Article{% endif %}</h1>
 
     <form method="POST">
-        {% csrf token %}
+        {% csrf_token %}
         {{ form.as_p }}
 
         <button type="submit">
