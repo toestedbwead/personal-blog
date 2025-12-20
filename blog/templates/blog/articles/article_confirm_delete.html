@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <title>Delete Article</title>
+</head>
+<body>
+    <h1>Delete Article?</h1>
+
+    <p>Are you sure you want to delete <strong>{{ article.title }}</strong>?</p>
+    <p><small>This action cannot be undone.</small></p>
+
+    <form method="POST">
+        {% csrf token %}
+        <button type="submit" style="color: red;">Yes, Delete</button>
+        <a href="{% url 'dashboard' %}">Cancel</a>
+    </form>  
+</body>
+</html>
