@@ -235,14 +235,17 @@
                             <a class="btn btn-ppg" href="{% url 'article-create' %}">Write Article</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer;">Logout</button>
+                            </form>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="btn btn-ppg" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-ppg-secondary" href="{% url 'register' %}">Sign Up</a>
+                            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
                         </li>
                     {% endif %}
                 </ul>
