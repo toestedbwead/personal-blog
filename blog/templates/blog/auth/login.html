@@ -1,27 +1,39 @@
 {% extends "blog/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-{% block content %}
-    <body>
-        <h1>Sign in</h1>
 
-        <form method="POST">
+{% block content %}
+    <div class="container" style="max-width: 450px; margin-top: 3rem; margin-bottom: 3rem;">
+        <h1>Login</h1>
+        
+        <form method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">
-                Login
-            </button>
+            
+            <!-- Username -->
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Password -->
+            <div class="mb-3">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.password.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-ppg w-100">Login</button>
         </form>
-        <p>Don't have an account?
-            <a href="{% url 'register' %}">
-                Register Here
-            </a>
+        
+        <p style="margin-top: 1rem; text-align: center;">
+            Don't have an account? <a href="{% url 'register' %}">Sign up here</a>
         </p>
-    </body>
+    </div>
 {% endblock %}
-</html>

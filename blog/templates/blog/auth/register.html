@@ -1,26 +1,61 @@
 {% extends "blog/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
+
 {% block content %}
-    <body>
-        <h1>Sign Up</h1>
-        <form method="POST">
+    <div class="container" style="max-width: 450px; margin-top: 3rem; margin-bottom: 3rem;">
+        <h1>Create Account</h1>
+        
+        <form method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">
-                Register
-            </button>
+            
+            <!-- Username -->
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Email -->
+            <div class="mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.email.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Password -->
+            <div class="mb-3">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.password1.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Password Confirmation -->
+            <div class="mb-3">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.password2.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-ppg w-100">Sign Up</button>
         </form>
-        <p>Already have an account? 
-            <a href="{% url 'login' %}">
-            Login Here 
-            </a>
+        
+        <p style="margin-top: 1rem; text-align: center;">
+            Already have an account? <a href="{% url 'login' %}">Login here</a>
         </p>
-    </body>
+    </div>
 {% endblock %}
-</html>
