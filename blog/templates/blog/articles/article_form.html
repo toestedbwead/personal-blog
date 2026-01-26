@@ -1,21 +1,24 @@
+{% extends "blog/base.html" %}
 <!DOCTYPE html>
 <head>
     <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %}Article
     </title>
 </head>
-<body>
-    <h1>{%if form.instance.pk %}Edit Article{% else %}Write New Article{% endif %}</h1>
+{% block content %}
+    <body>
+        <h1>{%if form.instance.pk %}Edit Article{% else %}Write New Article{% endif %}</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-        <button type="submit">
-            {% if form.instance.pk %}Update{% else %}Publish{% endif %}
-        </button>
-        <a href="{% url 'dashboard' %}">
-            Cancel
-        </a>
-    </form>
-</body>
+            <button type="submit">
+                {% if form.instance.pk %}Update{% else %}Publish{% endif %}
+            </button>
+            <a href="{% url 'dashboard' %}">
+                Cancel
+            </a>
+        </form>
+    </body>
+{% endblock %}
 </html>

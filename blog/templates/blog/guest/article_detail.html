@@ -1,23 +1,24 @@
+{% extends "blog/base.html" %}
 <!DOCTYPE html>
 <head>
     <title>{{ article.title }}</title>
 </head>
-<body>
-    <a href="{% url 'home' %}">
-        ← Back to Articles
-    </a>
+{% block content %}
+    <body>
+        <a href="{% url 'home' %}">
+            ← Back to Articles
+        </a>
 
-    <h1>{{ article.title }}</h1>
-    <p><small>By {{ article.author.username }} | {{ article.created_at|date:"M d, Y" }}</small></p>
-    <p><small>Category: {{ article.category.name }}</small></p>
+        <h1>{{ article.title }}</h1>
+        <p><small>By {{ article.author.username }} | {{ article.created_at|date:"M d, Y" }}</small></p>
+        <p><small>Category: {{ article.category.name }}</small></p>
 
-    <hr>
+        <hr>
 
-    <div>
-        {{ article.content }}
-    </div>
-    
-    <hr>
-    <a href="{% url 'home' %}">← Back to Articles</a>
-</body>
+        <div>
+            {{ article.content }}
+        </div>
+        
+    </body>
+{% endblock %}
 </html>
