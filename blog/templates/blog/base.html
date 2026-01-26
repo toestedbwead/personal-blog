@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Powerpuff Girls Blog{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --ppg-pink: #EA6964;
+            --ppg-pale-red: #E78C89;
+            --ppg-blue: #33ACE3;
+            --ppg-angel-blue: #98DAF1;
+            --ppg-green: #4AB62C;
+            --ppg-pretty-green: #81CB71;
+            --ppg-black: #000000;
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fredoka One', cursive;
+            font-weight: 700;
+            color: var(--ppg-pink);
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--ppg-black);
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(135deg, var(--ppg-pink) 0%, var(--ppg-blue) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: white !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link {
+            color: white !important;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .nav-link:hover {
+            transform: scale(1.05);
+            color: var(--ppg-angel-blue) !important;
+        }
+        
+        /* Button Styling */
+        .btn-ppg {
+            background-color: var(--ppg-green);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-weight: 700;
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-ppg:hover {
+            background-color: var(--ppg-pretty-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 182, 44, 0.3);
+            color: white;
+        }
+        
+        .btn-ppg-secondary {
+            background-color: var(--ppg-blue);
+            color: white;
+        }
+        
+        .btn-ppg-secondary:hover {
+            background-color: var(--ppg-angel-blue);
+            color: white;
+        }
+        
+        /* Card Styling */
+        .article-card {
+            border: 3px solid var(--ppg-blue);
+            border-radius: 15px;
+            transition: all 0.3s;
+            background: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-card:hover {
+            border-color: var(--ppg-pink);
+            box-shadow: 0 8px 16px rgba(234, 105, 100, 0.2);
+            transform: translateY(-4px);
+        }
+        
+        .article-card-header {
+            background: linear-gradient(135deg, var(--ppg-angel-blue) 0%, var(--ppg-pretty-green) 100%);
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .article-card h3 {
+            color: var(--ppg-black);
+            margin: 0;
+        }
+        
+        .article-meta {
+            color: var(--ppg-black);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--ppg-black);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--ppg-pink) 0%, var(--ppg-blue) 50%, var(--ppg-green) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Table Styling (Dashboard) */
+        .table-ppg {
+            border-collapse: collapse;
+        }
+        
+        .table-ppg thead {
+            background-color: var(--ppg-pink);
+            color: white;
+        }
+        
+        .table-ppg thead th {
+            font-family: 'Fredoka One', cursive;
+            border: none;
+            padding: 1rem;
+        }
+        
+        .table-ppg tbody tr {
+            border-bottom: 2px solid var(--ppg-angel-blue);
+        }
+        
+        .table-ppg tbody td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+        
+        .table-ppg tbody tr:hover {
+            background-color: #f0f8ff;
+        }
+        
+        /* Stats Cards */
+        .stat-card {
+            background: white;
+            border-left: 5px solid var(--ppg-pink);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card h4 {
+            color: var(--ppg-black);
+            font-size: 2rem;
+        }
+        
+        .stat-card p {
+            color: var(--ppg-blue);
+            font-weight: 600;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">💗 PPG Blog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-ppg nav-link" href="{% url 'article-create' %}">✍️ Write</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-ppg nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-ppg-secondary nav-link" href="{% url 'register' %}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Powerpuff Girls Blog. Built with Django & Love 💗💙💚</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
