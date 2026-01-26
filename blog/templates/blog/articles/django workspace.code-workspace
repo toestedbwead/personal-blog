@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "unit-converter",
+			"path": "../../../../../unit-converter"
+		},
+		{
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "unit-converter"
+	}
+}
